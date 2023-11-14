@@ -1,6 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://huydq.dev/sitemap.xml
-
-User-agent: GPTBot
-Disallow: /
