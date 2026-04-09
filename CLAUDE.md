@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal blog/website for tutorials, guides, and notes. Built with Astro and deployed to GitHub Pages at nguyenvanhuy0612.github.io.
+Personal knowledge base for tutorials, guides, and notes. Built with Astro + Starlight and deployed to GitHub Pages at nguyenvanhuy0612.github.io.
 
 ## Local Development
 
@@ -17,14 +17,14 @@ npm run preview      # Preview production build
 
 ## How Content Works
 
-All content is Markdown files in `src/content/` with YAML front matter. Content is validated by schemas in `src/content.config.ts`.
+All content lives in `src/content/docs/` as Markdown files. Starlight auto-generates sidebar entries, table of contents, search index, and navigation from this directory structure.
 
-| Type | Directory | URL pattern |
-|------|-----------|-------------|
-| Blog posts | `src/content/posts/` | `/posts/slug/` |
-| Tutorials | `src/content/tutorials/` | `/tutorials/slug/` |
-| Guides | `src/content/guides/` | `/guides/slug/` |
-| Notes | `src/content/notes/` | `/notes/slug/` |
+| Section | Directory | URL pattern |
+|---------|-----------|-------------|
+| Tutorials | `src/content/docs/tutorials/` | `/tutorials/slug/` |
+| Guides | `src/content/docs/guides/` | `/guides/slug/` |
+| Notes | `src/content/docs/notes/` | `/notes/slug/` |
+| Blog | `src/content/docs/posts/` | `/posts/slug/` |
 
 Every content file needs this front matter:
 
@@ -32,28 +32,24 @@ Every content file needs this front matter:
 ---
 title: "Title"
 description: "Short description"
-date: 2026-04-09
-tags: [tag1, tag2]
 ---
 ```
 
-The `date` field is required (unlike the old Jekyll setup). Tags default to `[]` if omitted.
+The homepage (`index.mdx`) uses the `splash` template with Starlight's `Card` and `CardGrid` components.
 
 ## Architecture
 
-- **`src/content.config.ts`** — Defines four collections (posts, tutorials, guides, notes) with shared Zod schema using glob loaders
-- **`src/layouts/Base.astro`** — HTML shell with navbar, footer, and ThemeToggle component. Includes inline script to prevent flash of wrong theme
-- **`src/layouts/Post.astro`** — Wraps Base, adds article header with title/date/tags
-- **`src/pages/[section]/[id].astro`** — Dynamic routes using `getStaticPaths()` + `getCollection()` for each content type
-- **`src/styles/global.css`** — All styling via CSS custom properties. Theme is toggled by setting `data-theme="dark"` on `<html>`
-- **`src/components/ThemeToggle.astro`** — Client-side toggle with localStorage persistence, defaults to `prefers-color-scheme`
+- **`astro.config.mjs`** — Starlight integration config: sidebar sections (autogenerate from directories), social links, edit links, lastUpdated
+- **`src/content.config.ts`** — Registers the `docs` collection using `docsLoader()` and `docsSchema()` from Starlight
+- **`src/content/docs/`** — All pages. Subdirectory names map to sidebar groups defined in `astro.config.mjs`
+- **`.github/workflows/deploy.yml`** — GitHub Actions using `withastro/action@v6` to build and `deploy-pages@v5` to deploy
 
 ## Deployment
 
-Push to `main` triggers `.github/workflows/deploy.yml` which uses `withastro/action@v6` to build and `deploy-pages@v5` to deploy. GitHub Pages source must be set to "GitHub Actions" in repo settings.
+Push to `main` triggers the GitHub Actions workflow. GitHub Pages source must be set to "GitHub Actions" in repo settings.
 
 ## Key Conventions
 
-- Content collections use glob-based loaders (`astro/loaders`), not the legacy `getCollection` file-based approach
-- Minimal client-side JS — only the theme toggle script
-- No external CSS frameworks or component libraries
+- Sidebar is configured in `astro.config.mjs` using `autogenerate: { directory: 'name' }` — adding a new file to a directory automatically adds it to the sidebar
+- No custom CSS or components — uses Starlight defaults for consistency with the Astro docs style
+- The homepage uses MDX (`.mdx`) to import Starlight components; all other pages use plain Markdown

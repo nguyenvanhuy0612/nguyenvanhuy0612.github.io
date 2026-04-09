@@ -1,92 +1,69 @@
 # nguyenvanhuy0612.github.io
 
-Personal blog and knowledge base for storing tutorials, guides, and notes. Built with [Astro](https://astro.build/) and deployed automatically via [GitHub Pages](https://pages.github.com/).
+Personal knowledge base for tutorials, guides, and notes. Built with [Astro](https://astro.build/) + [Starlight](https://starlight.astro.build/) and deployed via [GitHub Pages](https://pages.github.com/).
 
 **Live site:** [https://nguyenvanhuy0612.github.io](https://nguyenvanhuy0612.github.io)
 
 ## Tech Stack
 
 - **[Astro](https://astro.build/)** — fast, lightweight static site generator
-- **[@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/)** — MDX support for Markdown content
-- **CSS custom properties** — theming with light/dark mode toggle
+- **[Starlight](https://starlight.astro.build/)** — Astro's official documentation theme
+- **[Pagefind](https://pagefind.app/)** — built-in full-text search
 - **GitHub Actions** — automated build and deploy via `withastro/action`
 
 ## Project Structure
 
 ```
 .
-├── astro.config.mjs                # Astro configuration (site URL, integrations)
+├── astro.config.mjs                # Astro + Starlight config (site URL, sidebar, social links)
 ├── package.json                    # Dependencies and scripts (dev, build, preview)
 ├── tsconfig.json                   # TypeScript config (extends astro/tsconfigs/strict)
 ├── .gitignore                      # Ignores node_modules/, dist/, .astro/
 │
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml              # GitHub Actions workflow — builds & deploys to Pages
+│       └── deploy.yml              # GitHub Actions — builds & deploys to Pages
 │
 ├── src/
-│   ├── content.config.ts           # Content collections schema (posts, tutorials, guides, notes)
+│   ├── content.config.ts           # Content collection config (docsLoader + docsSchema)
 │   │
-│   ├── layouts/
-│   │   ├── Base.astro              # Base layout — HTML shell, navbar, footer, theme toggle
-│   │   └── Post.astro              # Post layout — extends Base, adds title/date/tags header
-│   │
-│   ├── components/
-│   │   └── ThemeToggle.astro       # Light/dark mode toggle button with localStorage persistence
-│   │
-│   ├── styles/
-│   │   └── global.css              # All styling — CSS variables, layout, cards, responsive design
-│   │
-│   ├── pages/
-│   │   ├── index.astro             # Homepage — recent posts, tutorials, guides
-│   │   ├── posts/[id].astro        # Dynamic route for individual blog posts
-│   │   ├── tutorials/
-│   │   │   ├── index.astro         # Tutorials listing page
-│   │   │   └── [id].astro          # Dynamic route for individual tutorials
-│   │   ├── guides/
-│   │   │   ├── index.astro         # Guides listing page
-│   │   │   └── [id].astro          # Dynamic route for individual guides
-│   │   └── notes/
-│   │       ├── index.astro         # Notes listing page
-│   │       └── [id].astro          # Dynamic route for individual notes
-│   │
-│   └── content/                    # Markdown content (one folder per collection)
-│       ├── posts/
-│       │   └── welcome.md
-│       ├── tutorials/
-│       │   └── install-openclaw.md
-│       ├── guides/                 # (empty — add .md files here)
-│       └── notes/                  # (empty — add .md files here)
+│   └── content/
+│       └── docs/                   # All site content lives here
+│           ├── index.mdx           # Homepage — splash page with card grid
+│           ├── tutorials/          # Step-by-step tutorial articles
+│           │   └── install-openclaw.md
+│           ├── guides/             # Reference guides and how-tos
+│           ├── notes/              # Quick notes and references
+│           └── posts/              # Blog posts
+│               └── welcome.md
 │
 ├── CLAUDE.md                       # Guidance for Claude Code AI assistant
 └── README.md                       # This file
 ```
 
-## Content Types
+## Content Sections
 
-| Type | Directory | Filename | URL |
-|------|-----------|----------|-----|
-| Blog posts | `src/content/posts/` | `any-name.md` | `/posts/name/` |
-| Tutorials | `src/content/tutorials/` | `any-name.md` | `/tutorials/name/` |
-| Guides | `src/content/guides/` | `any-name.md` | `/guides/name/` |
-| Notes | `src/content/notes/` | `any-name.md` | `/notes/name/` |
+| Section | Directory | URL |
+|---------|-----------|-----|
+| Tutorials | `src/content/docs/tutorials/` | `/tutorials/slug/` |
+| Guides | `src/content/docs/guides/` | `/guides/slug/` |
+| Notes | `src/content/docs/notes/` | `/notes/slug/` |
+| Blog | `src/content/docs/posts/` | `/posts/slug/` |
 
 ## Adding New Content
 
-Create a Markdown file in the appropriate `src/content/` subdirectory with front matter:
+Create a Markdown file in the appropriate `src/content/docs/` subdirectory:
 
 ```yaml
 ---
 title: "Your title here"
 description: "A short description"
-date: 2026-04-09
-tags: [tag1, tag2]
 ---
 
 Your content in Markdown...
 ```
 
-Then push to GitHub — the site builds and deploys automatically.
+New pages automatically appear in the sidebar (configured via `autogenerate` in `astro.config.mjs`).
 
 ## Local Development
 
@@ -104,15 +81,20 @@ npm run build
 npm run preview
 ```
 
-## Design Features
+## Features (from Starlight)
 
-- **Light/dark mode** — toggle button in navbar, persisted in localStorage, defaults to system preference
-- **Responsive** — mobile-friendly layout with stacked navigation on small screens
-- **Code highlighting** — syntax highlighting for code blocks
-- **Minimal JavaScript** — only used for theme toggle, everything else is static HTML/CSS
+- **Dark/light mode** — toggle in the header, persisted across visits
+- **Full-text search** — powered by Pagefind, built automatically
+- **Sidebar navigation** — auto-generated from directory structure
+- **Table of contents** — generated from headings on each page
+- **Code blocks** — syntax highlighting with copy button
+- **Edit links** — "Edit page" link pointing to GitHub source
+- **Last updated** — shows when each page was last modified
+- **Responsive** — mobile-friendly with collapsible sidebar
+- **SEO** — sitemap and meta tags generated automatically
 
 ## Deployment
 
-Push to the `main` branch. GitHub Actions (`.github/workflows/deploy.yml`) builds with `withastro/action` and deploys to GitHub Pages automatically.
+Push to the `main` branch. GitHub Actions (`.github/workflows/deploy.yml`) builds and deploys automatically.
 
 **Important:** In your GitHub repo settings, set Pages source to **GitHub Actions** (Settings > Pages > Source > GitHub Actions).

@@ -1,8 +1,6 @@
 ---
-title: "How to Install OpenClaw - Personal AI Assistant"
-description: "Step-by-step guide to install and set up OpenClaw, the open-source AI agent that works with WhatsApp, Telegram, Slack, and more"
-date: 2026-04-09
-tags: [ai, openclaw, setup]
+title: How to Install OpenClaw
+description: Step-by-step guide to install and set up OpenClaw, the open-source AI agent that works with WhatsApp, Telegram, Slack, and more
 ---
 
 [OpenClaw](https://openclaw.ai/) is a free, open-source AI agent that acts as your personal assistant through messaging apps like WhatsApp, Telegram, Slack, Discord, and more. It runs locally on your machine and connects to LLMs like Claude, GPT, or Gemini to actually do things — manage emails, calendars, and much more.
