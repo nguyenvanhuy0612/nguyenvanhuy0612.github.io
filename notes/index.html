@@ -1,0 +1,18 @@
+---
+layout: default
+title: Notes
+---
+
+<div class="section-header">
+  <h1>Notes</h1>
+  <p>Quick notes and references.</p>
+</div>
+
+<ul class="post-list">
+  {% for item in site.notes %}
+  <li>
+    <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>

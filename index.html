@@ -1,0 +1,42 @@
+---
+layout: default
+title: Home
+---
+
+<h1>Welcome</h1>
+<p>A personal collection of tutorials, guides, and notes.</p>
+
+<h2>Recent Posts</h2>
+<ul class="post-list">
+  {% for post in site.posts limit:5 %}
+  <li>
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <time>{{ post.date | date: "%B %d, %Y" }}</time>
+    {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+{% if site.tutorials.size > 0 %}
+<h2>Tutorials</h2>
+<ul class="post-list">
+  {% for item in site.tutorials limit:3 %}
+  <li>
+    <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if site.guides.size > 0 %}
+<h2>Guides</h2>
+<ul class="post-list">
+  {% for item in site.guides limit:3 %}
+  <li>
+    <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+    {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
