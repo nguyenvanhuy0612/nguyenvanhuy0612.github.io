@@ -1,6 +1,7 @@
 ---
 title: "How to Install OpenClaw - Personal AI Assistant"
 description: "Step-by-step guide to install and set up OpenClaw, the open-source AI agent that works with WhatsApp, Telegram, Slack, and more"
+date: 2026-04-09
 tags: [ai, openclaw, setup]
 ---
 

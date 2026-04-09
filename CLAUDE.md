@@ -4,27 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal blog/website for tutorials, guides, and notes. Built with Jekyll and published to GitHub Pages at nguyenvanhuy0612.github.io.
+Personal blog/website for tutorials, guides, and notes. Built with Astro and deployed to GitHub Pages at nguyenvanhuy0612.github.io.
 
 ## Local Development
 
 ```bash
-bundle install            # Install dependencies (first time only)
-bundle exec jekyll serve  # Start local server at http://localhost:4000
+npm install          # Install dependencies (first time only)
+npm run dev          # Start dev server at http://localhost:4321
+npm run build        # Production build to dist/
+npm run preview      # Preview production build
 ```
 
 ## How Content Works
 
-All content is written in Markdown with YAML front matter. There are four content types, each in its own directory:
+All content is Markdown files in `src/content/` with YAML front matter. Content is validated by schemas in `src/content.config.ts`.
 
 | Type | Directory | URL pattern |
 |------|-----------|-------------|
-| Blog posts | `_posts/` | `/YYYY/MM/DD/title/` |
-| Tutorials | `_tutorials/` | `/tutorials/title/` |
-| Guides | `_guides/` | `/guides/title/` |
-| Notes | `_notes/` | `/notes/title/` |
-
-**Blog posts** must be named `YYYY-MM-DD-title.md`. The other collections use any filename.
+| Blog posts | `src/content/posts/` | `/posts/slug/` |
+| Tutorials | `src/content/tutorials/` | `/tutorials/slug/` |
+| Guides | `src/content/guides/` | `/guides/slug/` |
+| Notes | `src/content/notes/` | `/notes/slug/` |
 
 Every content file needs this front matter:
 
@@ -32,23 +32,28 @@ Every content file needs this front matter:
 ---
 title: "Title"
 description: "Short description"
+date: 2026-04-09
 tags: [tag1, tag2]
 ---
 ```
 
+The `date` field is required (unlike the old Jekyll setup). Tags default to `[]` if omitted.
+
 ## Architecture
 
-- **`_config.yml`** — Site settings, collections config, and default front matter
-- **`_layouts/`** — `default.html` (shell with nav/footer) and `post.html` (extends default, adds title/date/tags header)
-- **`assets/css/style.css`** — All styling; uses CSS custom properties with automatic dark mode via `prefers-color-scheme`
-- **`index.html`** / `tutorials/` / `guides/` / `notes/` — Section index pages using Liquid loops over their respective collections
+- **`src/content.config.ts`** — Defines four collections (posts, tutorials, guides, notes) with shared Zod schema using glob loaders
+- **`src/layouts/Base.astro`** — HTML shell with navbar, footer, and ThemeToggle component. Includes inline script to prevent flash of wrong theme
+- **`src/layouts/Post.astro`** — Wraps Base, adds article header with title/date/tags
+- **`src/pages/[section]/[id].astro`** — Dynamic routes using `getStaticPaths()` + `getCollection()` for each content type
+- **`src/styles/global.css`** — All styling via CSS custom properties. Theme is toggled by setting `data-theme="dark"` on `<html>`
+- **`src/components/ThemeToggle.astro`** — Client-side toggle with localStorage persistence, defaults to `prefers-color-scheme`
 
 ## Deployment
 
-Push to the `main` branch of `nguyenvanhuy0612/nguyenvanhuy0612.github.io`. GitHub Pages builds and deploys automatically — no CI config needed.
+Push to `main` triggers `.github/workflows/deploy.yml` which uses `withastro/action@v6` to build and `deploy-pages@v5` to deploy. GitHub Pages source must be set to "GitHub Actions" in repo settings.
 
 ## Key Conventions
 
-- The site uses the `pages-themes/minimal` remote theme as a base
-- No JavaScript — pure HTML/CSS with Liquid templating
-- Dark mode is CSS-only (no toggle), respecting system preference
+- Content collections use glob-based loaders (`astro/loaders`), not the legacy `getCollection` file-based approach
+- Minimal client-side JS — only the theme toggle script
+- No external CSS frameworks or component libraries

@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Notes">
+  <div class="section-header">
+    <h1>Notes</h1>
+    <p>Quick notes and references.</p>
+  </div>
+
+  <ul class="post-list">
+    {notes.map(item => (
+      <li>
+        <h3><a href={`/notes/${item.id}/`}>{item.data.title}</a></h3>
+        <time>{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        {item.data.description && <p>{item.data.description}</p>}
+      </li>
+    ))}
+  </ul>
+</Base>
