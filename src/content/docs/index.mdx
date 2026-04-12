@@ -1,32 +1,53 @@
 ---
-title: Welcome
-description: Tutorials, guides, and notes by Huy
+title: Huy's Notes
+description: Tutorials, guides, and notes about AI, development, and more.
 template: splash
-hero:
-  tagline: A personal collection of tutorials, guides, and notes about AI, development, and more.
-  actions:
-    - text: Browse Tutorials
-      link: /tutorials/install-openclaw/
-      icon: right-arrow
-    - text: View on GitHub
-      link: https://github.com/nguyenvanhuy0612
-      icon: external
-      variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
-<CardGrid stagger>
-  <Card title="Tutorials" icon="open-book">
-    Step-by-step walkthroughs on setting up tools and technologies.
-  </Card>
-  <Card title="Guides" icon="puzzle">
-    Reference material and how-to articles.
-  </Card>
-  <Card title="Notes" icon="pencil">
-    Quick notes and things I want to remember.
-  </Card>
-  <Card title="Blog" icon="document">
-    General posts and updates.
-  </Card>
-</CardGrid>
+<div class="home-hero">
+  <h1 class="home-hero__title">Huy's Notes</h1>
+  <p class="home-hero__lead">Tutorials, guides, and notes about AI, development tools, and more.</p>
+</div>
+
+<div class="home-body">
+
+<div class="home-section">
+  <p class="home-section__label">Get started</p>
+
+  <LinkCard
+    title="How to Install OpenClaw"
+    href="/tutorials/install-openclaw/"
+    description="Step-by-step guide to install and set up OpenClaw, the open-source AI agent that works with WhatsApp, Telegram, Slack, and more."
+  />
+</div>
+
+<div class="home-section">
+  <p class="home-section__label">All topics</p>
+
+  <CardGrid>
+    <LinkCard
+      title="Tutorials"
+      href="/tutorials/install-openclaw/"
+      description="Step-by-step walkthroughs for setting up tools and technologies."
+    />
+    <LinkCard
+      title="Guides"
+      href="/guides/"
+      description="Reference material and how-to articles."
+    />
+    <LinkCard
+      title="Notes"
+      href="/notes/"
+      description="Quick notes and things worth remembering."
+    />
+    <LinkCard
+      title="Blog"
+      href="/posts/welcome/"
+      description="General posts and updates."
+    />
+  </CardGrid>
+</div>
+
+</div>

@@ -209,9 +209,48 @@ header.header {
   color: var(--sl-color-gray-5);
 }
 
-/* ===== HERO (home page) ===== */
-.hero > .tagline {
+/* ===== HOME PAGE ===== */
+.home-hero {
+  text-align: center;
+  padding: 4rem 1rem 2.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.home-hero__title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--sl-color-gray-7);
+  margin: 0 0 1rem;
+}
+
+.home-hero__lead {
+  font-size: 1.125rem;
   color: var(--sl-color-gray-5);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.home-body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+}
+
+.home-section {
+  margin-bottom: 2.5rem;
+}
+
+.home-section__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sl-color-gray-5);
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sl-color-gray-3);
 }
 
 /* ===== PAGINATION ===== */
