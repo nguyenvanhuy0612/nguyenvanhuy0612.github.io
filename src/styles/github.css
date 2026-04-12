@@ -1,0 +1,227 @@
+/*
+ * GitHub Docs-inspired theme for Starlight
+ * Based on GitHub's Primer design system
+ */
+
+/* ===== LIGHT MODE COLORS ===== */
+:root {
+  /* GitHub blue accent */
+  --sl-color-accent-low: #dbeafe;
+  --sl-color-accent: #0969da;
+  --sl-color-accent-high: #0550ae;
+
+  /* GitHub Primer neutral grays (light → dark) */
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f6f8fa;
+  --sl-color-gray-2: #eaeef2;
+  --sl-color-gray-3: #d0d7de;
+  --sl-color-gray-4: #8c959f;
+  --sl-color-gray-5: #656d76;
+  --sl-color-gray-6: #424a53;
+  --sl-color-gray-7: #1f2328;
+  --sl-color-black: #1f2328;
+
+  /* GitHub system font stack */
+  --sl-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif;
+  --sl-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+/* ===== DARK MODE COLORS ===== */
+:root[data-theme="dark"] {
+  /* GitHub blue accent (dark mode) */
+  --sl-color-accent-low: #1c2d5c;
+  --sl-color-accent: #4493f8;
+  --sl-color-accent-high: #79c0ff;
+
+  /* GitHub Primer dark grays */
+  --sl-color-white: #e6edf3;
+  --sl-color-gray-1: #161b22;
+  --sl-color-gray-2: #21262d;
+  --sl-color-gray-3: #30363d;
+  --sl-color-gray-4: #484f58;
+  --sl-color-gray-5: #6e7781;
+  --sl-color-gray-6: #8d96a0;
+  --sl-color-gray-7: #cdd9e5;
+  --sl-color-black: #0d1117;
+}
+
+/* ===== GLOBAL ===== */
+body {
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+/* ===== HEADINGS ===== */
+.sl-markdown-content h2 {
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--sl-color-gray-3);
+  font-weight: 600;
+}
+
+.sl-markdown-content h3 {
+  font-weight: 600;
+}
+
+/* ===== LINKS ===== */
+.sl-markdown-content a {
+  color: var(--sl-color-accent);
+  text-decoration: none;
+}
+
+.sl-markdown-content a:hover {
+  text-decoration: underline;
+}
+
+/* ===== INLINE CODE ===== */
+.sl-markdown-content :not(pre) > code {
+  background-color: var(--sl-color-gray-1);
+  border: 1px solid var(--sl-color-gray-3);
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+  font-family: var(--sl-font-mono);
+  color: var(--sl-color-gray-7);
+}
+
+:root[data-theme="dark"] .sl-markdown-content :not(pre) > code {
+  background-color: var(--sl-color-gray-2);
+}
+
+/* ===== CODE BLOCKS ===== */
+.sl-markdown-content pre {
+  border: 1px solid var(--sl-color-gray-3);
+  border-radius: 6px;
+}
+
+:root[data-theme="dark"] .sl-markdown-content pre {
+  background-color: #161b22 !important;
+}
+
+/* ===== BLOCKQUOTES ===== */
+.sl-markdown-content blockquote {
+  border-left: 4px solid var(--sl-color-gray-3);
+  color: var(--sl-color-gray-5);
+  padding-left: 1em;
+  margin-left: 0;
+}
+
+/* ===== TABLES ===== */
+.sl-markdown-content table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sl-markdown-content th,
+.sl-markdown-content td {
+  border: 1px solid var(--sl-color-gray-3);
+  padding: 6px 13px;
+}
+
+.sl-markdown-content th {
+  background-color: var(--sl-color-gray-1);
+  font-weight: 600;
+}
+
+.sl-markdown-content tr:nth-child(even) td {
+  background-color: var(--sl-color-gray-1);
+}
+
+:root[data-theme="dark"] .sl-markdown-content tr:nth-child(even) td {
+  background-color: var(--sl-color-gray-2);
+}
+
+/* ===== CALLOUTS / ASIDES ===== */
+/* Note */
+.starlight-aside--note {
+  --sl-color-asides-border: #0969da;
+  border-color: #0969da;
+  background-color: #dbeafe;
+}
+
+:root[data-theme="dark"] .starlight-aside--note {
+  background-color: #1c2d5c;
+}
+
+/* Tip */
+.starlight-aside--tip {
+  --sl-color-asides-border: #1a7f37;
+  border-color: #1a7f37;
+  background-color: #d1fae5;
+}
+
+:root[data-theme="dark"] .starlight-aside--tip {
+  background-color: #122d1e;
+}
+
+/* Caution / Warning */
+.starlight-aside--caution {
+  --sl-color-asides-border: #9a6700;
+  border-color: #9a6700;
+  background-color: #fff8c5;
+}
+
+:root[data-theme="dark"] .starlight-aside--caution {
+  background-color: #2d1b00;
+}
+
+/* Danger */
+.starlight-aside--danger {
+  --sl-color-asides-border: #cf222e;
+  border-color: #cf222e;
+  background-color: #ffebe9;
+}
+
+:root[data-theme="dark"] .starlight-aside--danger {
+  background-color: #3d0c0c;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar-pane {
+  border-right: 1px solid var(--sl-color-gray-3);
+}
+
+/* Active sidebar link */
+a[aria-current="page"] {
+  font-weight: 600;
+}
+
+/* ===== SITE HEADER ===== */
+header.header {
+  border-bottom: 1px solid var(--sl-color-gray-3);
+  box-shadow: none;
+}
+
+/* ===== RIGHT SIDEBAR (TOC) ===== */
+.right-sidebar {
+  border-left: 1px solid var(--sl-color-gray-3);
+}
+
+/* TOC heading */
+.right-sidebar-panel > h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sl-color-gray-5);
+}
+
+/* ===== HERO (home page) ===== */
+.hero > .tagline {
+  color: var(--sl-color-gray-5);
+}
+
+/* ===== PAGINATION ===== */
+.pagination-links a {
+  border: 1px solid var(--sl-color-gray-3);
+  border-radius: 6px;
+}
+
+.pagination-links a:hover {
+  border-color: var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+  text-decoration: none;
+}

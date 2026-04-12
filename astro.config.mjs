@@ -7,6 +7,7 @@ export default defineConfig({
     starlight({
       title: "Huy's Notes",
       description: 'Tutorials, guides, and notes',
+      customCss: ['./src/styles/github.css'],
       social: [
         {
           icon: 'github',
