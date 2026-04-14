@@ -1,106 +1,90 @@
 /* ============================================================
-   OpenRouter-inspired theme for Starlight
-   Clean, minimal, content-focused with violet accent
+   OpenRouter-inspired theme — minimal, mostly grayscale
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ─── DARK MODE (default) ─── */
 :root {
-  /* Violet accent */
-  --sl-color-accent-low: #200d47;
-  --sl-color-accent: #8b5cf6;
-  --sl-color-accent-high: #c4b5fd;
+  /* Neutral accent — used only for active states, links */
+  --sl-color-accent-low: #1a1f2e;
+  --sl-color-accent: #7b8fb0;
+  --sl-color-accent-high: #c9d4e8;
 
-  /* Near-black palette (gray-1 = lightest, gray-6 = darkest, black = bg) */
+  /* Near-black palette */
   --sl-color-white: #ffffff;
-  --sl-color-gray-1: #f5f5f5;   /* bright text / headings */
-  --sl-color-gray-2: #e5e5e5;   /* body text */
-  --sl-color-gray-3: #737373;   /* muted / secondary text */
-  --sl-color-gray-4: #2a2a2a;   /* borders & dividers */
-  --sl-color-gray-5: #1a1a1a;   /* subtle surface / inline code bg */
-  --sl-color-gray-6: #111111;   /* nav bar & sidebar bg */
-  --sl-color-black: #0a0a0a;    /* page background */
+  --sl-color-gray-1: #ededed;   /* primary text */
+  --sl-color-gray-2: #d4d4d4;   /* body text */
+  --sl-color-gray-3: #6b6b6b;   /* muted text */
+  --sl-color-gray-4: #242424;   /* borders */
+  --sl-color-gray-5: #1a1a1a;   /* subtle surface / code bg */
+  --sl-color-gray-6: #161616;   /* sidebar / nav bg */
+  --sl-color-black: #0f0f0f;    /* page background */
 
-  /* Typography */
   --sl-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --sl-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   --sl-line-height: 1.75;
 
-  /* Layout */
   --sl-content-width: 48rem;
   --sl-sidebar-width: 15rem;
 }
 
 /* ─── LIGHT MODE ─── */
 :root[data-theme='light'] {
-  --sl-color-accent-low: #ede9fe;
-  --sl-color-accent: #7c3aed;
-  --sl-color-accent-high: #5b21b6;
+  --sl-color-accent-low: #eef2f8;
+  --sl-color-accent: #4a6fa5;
+  --sl-color-accent-high: #1e3a5f;
 
-  /* Inverted: gray-1 = darkest, black = white bg */
-  --sl-color-white: #0a0a0a;
-  --sl-color-gray-1: #0a0a0a;
-  --sl-color-gray-2: #171717;
-  --sl-color-gray-3: #737373;
-  --sl-color-gray-4: #d4d4d4;
-  --sl-color-gray-5: #e5e5e5;
-  --sl-color-gray-6: #f5f5f5;
+  --sl-color-white: #111111;
+  --sl-color-gray-1: #111111;   /* primary text */
+  --sl-color-gray-2: #333333;   /* body text */
+  --sl-color-gray-3: #888888;   /* muted text */
+  --sl-color-gray-4: #e2e2e2;   /* borders */
+  --sl-color-gray-5: #f0f0f0;   /* subtle surface / code bg */
+  --sl-color-gray-6: #f7f7f7;   /* sidebar / nav bg */
   --sl-color-gray-7: #ffffff;
-  --sl-color-black: #ffffff;
+  --sl-color-black: #ffffff;    /* page background */
 }
 
 /* ============================================================
-   LAYOUT — minimal sidebar + no right TOC
+   LAYOUT — minimal sidebar, no right TOC
    ============================================================ */
 
-/* Hide right-side TOC panel — sidebar is the navigation */
-.right-sidebar-container {
-  display: none !important;
-}
+.right-sidebar-container { display: none !important; }
+starlight-mobile-toc { display: none !important; }
 
-/* Hide the mobile sticky TOC bar */
-starlight-mobile-toc {
-  display: none !important;
-}
-
-/* TwoColumnContent: make main pane fill the freed TOC space */
 @media (min-width: 72rem) {
-  .main-pane {
-    width: 100% !important;
-  }
+  .main-pane { width: 100% !important; }
 }
 
 /* ============================================================
-   SIDEBAR — minimal OpenRouter-style
+   SIDEBAR
    ============================================================ */
 
-/* Subtle border, no heavy background difference */
 .sidebar-pane {
   border-inline-end: 1px solid var(--sl-color-gray-4) !important;
 }
 
-/* Tighter sidebar links */
+/* Tighter link sizing */
 .sidebar-content a {
   font-size: 0.8125rem;
   padding-block: 0.25rem;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 /* Section group labels */
-.sidebar-content details summary,
-.sidebar-content > .sl-flex > * > summary {
-  font-size: 0.7rem;
+.sidebar-content details summary {
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--sl-color-gray-3);
 }
 
-/* Active page link */
+/* Active page link — subtle, no strong color */
 a[aria-current='page'] {
-  color: var(--sl-color-accent-high) !important;
-  background-color: var(--sl-color-accent-low) !important;
+  background-color: var(--sl-color-gray-5) !important;
+  color: var(--sl-color-gray-1) !important;
   font-weight: 500;
 }
 
@@ -152,12 +136,11 @@ body {
   color: var(--sl-color-accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, opacity 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .sl-markdown-content a:hover {
   border-bottom-color: var(--sl-color-accent);
-  opacity: 0.85;
 }
 
 /* ============================================================
@@ -167,15 +150,11 @@ body {
 .sl-markdown-content :not(pre) > code {
   background-color: var(--sl-color-gray-5);
   border: 1px solid var(--sl-color-gray-4);
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 0.15em 0.4em;
   font-size: 0.84em;
   font-family: var(--sl-font-mono);
-  color: var(--sl-color-accent-high);
-}
-
-:root[data-theme='light'] .sl-markdown-content :not(pre) > code {
-  color: var(--sl-color-accent);
+  color: var(--sl-color-gray-1);
 }
 
 /* ============================================================
@@ -184,13 +163,13 @@ body {
 
 .sl-markdown-content pre {
   border: 1px solid var(--sl-color-gray-4);
-  border-radius: 8px;
-  background-color: var(--sl-color-gray-6) !important;
+  border-radius: 6px;
+  background-color: var(--sl-color-gray-5) !important;
   overflow-x: auto;
 }
 
 :root[data-theme='light'] .sl-markdown-content pre {
-  background-color: #f8f8fa !important;
+  background-color: #f5f5f5 !important;
 }
 
 /* ============================================================
@@ -198,12 +177,10 @@ body {
    ============================================================ */
 
 .sl-markdown-content blockquote {
-  border-left: 3px solid var(--sl-color-accent);
-  background-color: var(--sl-color-accent-low);
-  border-radius: 0 6px 6px 0;
+  border-left: 3px solid var(--sl-color-gray-4);
   padding: 0.75em 1.25em;
   margin-inline: 0;
-  opacity: 0.95;
+  color: var(--sl-color-gray-3);
 }
 
 /* ============================================================
@@ -242,7 +219,7 @@ body {
    ============================================================ */
 
 .starlight-aside {
-  border-radius: 8px;
+  border-radius: 6px;
   border-width: 1px;
   font-size: 0.9em;
 }
@@ -253,18 +230,18 @@ body {
 }
 
 .starlight-aside--tip {
-  --sl-color-asides-border: #10b981;
-  background-color: rgba(16, 185, 129, 0.08);
+  --sl-color-asides-border: #3d9970;
+  background-color: rgba(61, 153, 112, 0.07);
 }
 
 .starlight-aside--caution {
-  --sl-color-asides-border: #f59e0b;
-  background-color: rgba(245, 158, 11, 0.08);
+  --sl-color-asides-border: #a0845c;
+  background-color: rgba(160, 132, 92, 0.07);
 }
 
 .starlight-aside--danger {
-  --sl-color-asides-border: #ef4444;
-  background-color: rgba(239, 68, 68, 0.08);
+  --sl-color-asides-border: #a05252;
+  background-color: rgba(160, 82, 82, 0.07);
 }
 
 /* ============================================================
@@ -279,7 +256,7 @@ body {
 }
 
 .home-hero__title {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.03em;
@@ -287,7 +264,7 @@ body {
 }
 
 .home-hero__lead {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   color: var(--sl-color-gray-3);
   margin: 0;
