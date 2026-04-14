@@ -27,8 +27,9 @@
   --sl-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   --sl-line-height: 1.75;
 
-  /* Wider content column */
-  --sl-content-width: 52rem;
+  /* Layout */
+  --sl-content-width: 48rem;
+  --sl-sidebar-width: 15rem;
 }
 
 /* ─── LIGHT MODE ─── */
@@ -39,33 +40,21 @@
 
   /* Inverted: gray-1 = darkest, black = white bg */
   --sl-color-white: #0a0a0a;
-  --sl-color-gray-1: #0a0a0a;   /* darkest text */
-  --sl-color-gray-2: #171717;   /* body text */
-  --sl-color-gray-3: #737373;   /* muted text */
-  --sl-color-gray-4: #d4d4d4;   /* borders */
-  --sl-color-gray-5: #e5e5e5;   /* subtle surface */
-  --sl-color-gray-6: #f5f5f5;   /* nav / sidebar bg */
+  --sl-color-gray-1: #0a0a0a;
+  --sl-color-gray-2: #171717;
+  --sl-color-gray-3: #737373;
+  --sl-color-gray-4: #d4d4d4;
+  --sl-color-gray-5: #e5e5e5;
+  --sl-color-gray-6: #f5f5f5;
   --sl-color-gray-7: #ffffff;
-  --sl-color-black: #ffffff;    /* page background */
+  --sl-color-black: #ffffff;
 }
 
 /* ============================================================
-   LAYOUT — hide sidebars, full-width centered content
+   LAYOUT — minimal sidebar + no right TOC
    ============================================================ */
 
-/* Remove left sidebar on desktop, keep mobile hamburger */
-@media (min-width: 50rem) {
-  nav.sidebar {
-    display: none !important;
-  }
-}
-
-/* Zero out the left-indent that sidebar normally creates */
-[data-has-sidebar] {
-  --sl-content-inline-start: 0 !important;
-}
-
-/* Hide right-side TOC panel */
+/* Hide right-side TOC panel — sidebar is the navigation */
 .right-sidebar-container {
   display: none !important;
 }
@@ -75,16 +64,44 @@ starlight-mobile-toc {
   display: none !important;
 }
 
-/* TwoColumnContent: make main pane full width */
-.main-pane {
-  width: 100% !important;
+/* TwoColumnContent: make main pane fill the freed TOC space */
+@media (min-width: 72rem) {
+  .main-pane {
+    width: 100% !important;
+  }
 }
 
-/* Content column: wider and centered */
-.sl-container {
-  max-width: calc(var(--sl-content-width) + 4rem) !important;
-  margin-inline: auto !important;
-  padding-inline: 2rem !important;
+/* ============================================================
+   SIDEBAR — minimal OpenRouter-style
+   ============================================================ */
+
+/* Subtle border, no heavy background difference */
+.sidebar-pane {
+  border-inline-end: 1px solid var(--sl-color-gray-4) !important;
+}
+
+/* Tighter sidebar links */
+.sidebar-content a {
+  font-size: 0.8125rem;
+  padding-block: 0.25rem;
+  border-radius: 5px;
+}
+
+/* Section group labels */
+.sidebar-content details summary,
+.sidebar-content > .sl-flex > * > summary {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--sl-color-gray-3);
+}
+
+/* Active page link */
+a[aria-current='page'] {
+  color: var(--sl-color-accent-high) !important;
+  background-color: var(--sl-color-accent-low) !important;
+  font-weight: 500;
 }
 
 /* ============================================================
@@ -93,7 +110,7 @@ starlight-mobile-toc {
 
 header.header {
   background: var(--sl-color-gray-6);
-  border-bottom: 1px solid var(--sl-color-gray-5);
+  border-bottom: 1px solid var(--sl-color-gray-4);
   box-shadow: none;
 }
 
@@ -169,6 +186,7 @@ body {
   border: 1px solid var(--sl-color-gray-4);
   border-radius: 8px;
   background-color: var(--sl-color-gray-6) !important;
+  overflow-x: auto;
 }
 
 :root[data-theme='light'] .sl-markdown-content pre {
