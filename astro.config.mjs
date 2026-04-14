@@ -5,9 +5,12 @@ export default defineConfig({
   site: 'https://nguyenvanhuy0612.github.io',
   integrations: [
     starlight({
-      title: "Huy's Notes",
-      description: 'AI development notes — local models, APIs, and tools',
+      title: 'LLM Field Notes',
+      description: 'In-depth guides on local AI, large language models, and developer tools',
       customCss: ['./src/styles/openrouter.css'],
+      components: {
+        Footer: './src/components/Footer.astro',
+      },
       social: [
         {
           icon: 'github',
@@ -34,7 +37,7 @@ export default defineConfig({
         },
       ],
       lastUpdated: true,
-      pagination: true,
+      pagination: false,
       editLink: {
         baseUrl: 'https://github.com/nguyenvanhuy0612/nguyenvanhuy0612.github.io/edit/main/',
       },

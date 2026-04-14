@@ -1,0 +1,170 @@
+---
+import EditLink from 'virtual:starlight/components/EditLink';
+import LastUpdated from 'virtual:starlight/components/LastUpdated';
+---
+
+<div class="footer-meta sl-flex">
+  <EditLink />
+  <LastUpdated />
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">LLM Field Notes</span>
+        <p class="footer-tagline">In-depth guides on local AI,<br />large language models, and developer tools.</p>
+      </div>
+
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul>
+            <li><a href="/local-ai/">Local AI</a></li>
+            <li><a href="/ai-apis/">AI APIs</a></li>
+            <li><a href="/blog/">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="/local-ai/install-ollama/">Install Ollama</a></li>
+            <li><a href="/local-ai/install-openclaw/">Install OpenClaw</a></li>
+            <li><a href="/local-ai/local-models-comparison/">Model Comparison</a></li>
+            <li><a href="/ai-apis/claude-api-getting-started/">Claude API</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a></li>
+            <li><a href="https://lmstudio.ai" target="_blank" rel="noopener">LM Studio</a></li>
+            <li><a href="https://docs.vllm.ai" target="_blank" rel="noopener">vLLM</a></li>
+            <li><a href="https://platform.claude.com/docs" target="_blank" rel="noopener">Claude Docs</a></li>
+            <li><a href="https://huggingface.co/models" target="_blank" rel="noopener">Hugging Face</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://github.com/nguyenvanhuy0612" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 LLM Field Notes</span>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  /* ── meta bar (edit link + last updated) ── */
+  .footer-meta {
+    gap: 0.75rem 3rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    padding-bottom: 0;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+
+  /* ── full-bleed wrapper: break out of sl-container ── */
+  .site-footer {
+    /* break out of sl-container's max-width centering */
+    width: calc(100% + 2 * var(--sl-content-pad-x, 1.5rem));
+    margin-inline: calc(-1 * var(--sl-content-pad-x, 1.5rem));
+    margin-top: 3rem;
+    border-top: 1px solid var(--sl-color-gray-4);
+    background-color: var(--sl-color-gray-6);
+  }
+
+  .footer-inner {
+    padding: 3rem var(--sl-content-pad-x, 1.5rem) 2rem;
+  }
+
+  /* ── top: brand + columns ── */
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  /* ── brand block ── */
+  .footer-brand {
+    flex: 0 0 auto;
+    min-width: 180px;
+  }
+
+  .footer-logo {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--sl-color-gray-1);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-tagline {
+    font-size: 0.8125rem;
+    color: var(--sl-color-gray-3);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── columns grid ── */
+  .footer-cols {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 2rem;
+  }
+
+  .footer-col h4 {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--sl-color-gray-3);
+    margin: 0 0 0.75rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .footer-col a {
+    font-size: 0.8125rem;
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    border-bottom: none !important;
+  }
+
+  .footer-col a:hover {
+    color: var(--sl-color-gray-1);
+    border-bottom: none !important;
+    opacity: 1 !important;
+  }
+
+  /* ── bottom bar ── */
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--sl-color-gray-4);
+    font-size: 0.8rem;
+    color: var(--sl-color-gray-3);
+  }
+</style>
