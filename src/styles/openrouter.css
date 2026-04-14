@@ -53,8 +53,13 @@
 .right-sidebar-container { display: none !important; }
 starlight-mobile-toc { display: none !important; }
 
+/* When both sidebar + TOC exist Starlight sets --sl-content-margin-inline: auto 0
+   which right-aligns the content column. Reset it now the TOC is hidden. */
 @media (min-width: 72rem) {
-  .main-pane { width: 100% !important; }
+  .main-pane {
+    width: 100% !important;
+    --sl-content-margin-inline: auto !important;
+  }
 }
 
 /* ============================================================
