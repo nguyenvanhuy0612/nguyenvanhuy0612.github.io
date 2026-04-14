@@ -1,0 +1,313 @@
+/* ============================================================
+   OpenRouter-inspired theme for Starlight
+   Clean, minimal, content-focused with violet accent
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ─── DARK MODE (default) ─── */
+:root {
+  /* Violet accent */
+  --sl-color-accent-low: #200d47;
+  --sl-color-accent: #8b5cf6;
+  --sl-color-accent-high: #c4b5fd;
+
+  /* Near-black palette (gray-1 = lightest, gray-6 = darkest, black = bg) */
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f5f5f5;   /* bright text / headings */
+  --sl-color-gray-2: #e5e5e5;   /* body text */
+  --sl-color-gray-3: #737373;   /* muted / secondary text */
+  --sl-color-gray-4: #2a2a2a;   /* borders & dividers */
+  --sl-color-gray-5: #1a1a1a;   /* subtle surface / inline code bg */
+  --sl-color-gray-6: #111111;   /* nav bar & sidebar bg */
+  --sl-color-black: #0a0a0a;    /* page background */
+
+  /* Typography */
+  --sl-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sl-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --sl-line-height: 1.75;
+
+  /* Wider content column */
+  --sl-content-width: 52rem;
+}
+
+/* ─── LIGHT MODE ─── */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #ede9fe;
+  --sl-color-accent: #7c3aed;
+  --sl-color-accent-high: #5b21b6;
+
+  /* Inverted: gray-1 = darkest, black = white bg */
+  --sl-color-white: #0a0a0a;
+  --sl-color-gray-1: #0a0a0a;   /* darkest text */
+  --sl-color-gray-2: #171717;   /* body text */
+  --sl-color-gray-3: #737373;   /* muted text */
+  --sl-color-gray-4: #d4d4d4;   /* borders */
+  --sl-color-gray-5: #e5e5e5;   /* subtle surface */
+  --sl-color-gray-6: #f5f5f5;   /* nav / sidebar bg */
+  --sl-color-gray-7: #ffffff;
+  --sl-color-black: #ffffff;    /* page background */
+}
+
+/* ============================================================
+   LAYOUT — hide sidebars, full-width centered content
+   ============================================================ */
+
+/* Remove left sidebar on desktop, keep mobile hamburger */
+@media (min-width: 50rem) {
+  nav.sidebar {
+    display: none !important;
+  }
+}
+
+/* Zero out the left-indent that sidebar normally creates */
+[data-has-sidebar] {
+  --sl-content-inline-start: 0 !important;
+}
+
+/* Hide right-side TOC panel */
+.right-sidebar-container {
+  display: none !important;
+}
+
+/* Hide the mobile sticky TOC bar */
+starlight-mobile-toc {
+  display: none !important;
+}
+
+/* TwoColumnContent: make main pane full width */
+.main-pane {
+  width: 100% !important;
+}
+
+/* Content column: wider and centered */
+.sl-container {
+  max-width: calc(var(--sl-content-width) + 4rem) !important;
+  margin-inline: auto !important;
+  padding-inline: 2rem !important;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+header.header {
+  background: var(--sl-color-gray-6);
+  border-bottom: 1px solid var(--sl-color-gray-5);
+  box-shadow: none;
+}
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+
+body {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+.sl-markdown-content h5 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.sl-markdown-content h2 {
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--sl-color-gray-4);
+  margin-top: 2.5rem;
+}
+
+/* ============================================================
+   LINKS
+   ============================================================ */
+
+.sl-markdown-content a {
+  color: var(--sl-color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.sl-markdown-content a:hover {
+  border-bottom-color: var(--sl-color-accent);
+  opacity: 0.85;
+}
+
+/* ============================================================
+   INLINE CODE
+   ============================================================ */
+
+.sl-markdown-content :not(pre) > code {
+  background-color: var(--sl-color-gray-5);
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 5px;
+  padding: 0.15em 0.4em;
+  font-size: 0.84em;
+  font-family: var(--sl-font-mono);
+  color: var(--sl-color-accent-high);
+}
+
+:root[data-theme='light'] .sl-markdown-content :not(pre) > code {
+  color: var(--sl-color-accent);
+}
+
+/* ============================================================
+   CODE BLOCKS
+   ============================================================ */
+
+.sl-markdown-content pre {
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 8px;
+  background-color: var(--sl-color-gray-6) !important;
+}
+
+:root[data-theme='light'] .sl-markdown-content pre {
+  background-color: #f8f8fa !important;
+}
+
+/* ============================================================
+   BLOCKQUOTES
+   ============================================================ */
+
+.sl-markdown-content blockquote {
+  border-left: 3px solid var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75em 1.25em;
+  margin-inline: 0;
+  opacity: 0.95;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+
+.sl-markdown-content table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.sl-markdown-content th,
+.sl-markdown-content td {
+  border: 1px solid var(--sl-color-gray-4);
+  padding: 8px 14px;
+  text-align: left;
+}
+
+.sl-markdown-content th {
+  background-color: var(--sl-color-gray-5);
+  font-weight: 600;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sl-markdown-content tr:hover td {
+  background-color: var(--sl-color-gray-5);
+}
+
+/* ============================================================
+   CALLOUTS / ASIDES
+   ============================================================ */
+
+.starlight-aside {
+  border-radius: 8px;
+  border-width: 1px;
+  font-size: 0.9em;
+}
+
+.starlight-aside--note {
+  --sl-color-asides-border: var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+}
+
+.starlight-aside--tip {
+  --sl-color-asides-border: #10b981;
+  background-color: rgba(16, 185, 129, 0.08);
+}
+
+.starlight-aside--caution {
+  --sl-color-asides-border: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+.starlight-aside--danger {
+  --sl-color-asides-border: #ef4444;
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+
+.pagination-links a {
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 8px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.pagination-links a:hover {
+  border-color: var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+  text-decoration: none;
+}
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+
+.home-hero {
+  text-align: center;
+  padding: 5rem 1.5rem 2.5rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.home-hero__title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem;
+}
+
+.home-hero__lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--sl-color-gray-3);
+  margin: 0;
+}
+
+.home-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+.home-section {
+  margin-bottom: 2.5rem;
+}
+
+.home-section__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sl-color-gray-3);
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sl-color-gray-4);
+}

@@ -6,8 +6,8 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Huy's Notes",
-      description: 'Tutorials, guides, and notes',
-      customCss: ['./src/styles/github.css'],
+      description: 'AI development notes — local models, APIs, and tools',
+      customCss: ['./src/styles/openrouter.css'],
       social: [
         {
           icon: 'github',
@@ -21,20 +21,16 @@ export default defineConfig({
           link: '/',
         },
         {
-          label: 'Tutorials',
-          autogenerate: { directory: 'tutorials' },
+          label: 'Local AI',
+          autogenerate: { directory: 'local-ai' },
         },
         {
-          label: 'Guides',
-          autogenerate: { directory: 'guides' },
-        },
-        {
-          label: 'Notes',
-          autogenerate: { directory: 'notes' },
+          label: 'AI APIs',
+          autogenerate: { directory: 'ai-apis' },
         },
         {
           label: 'Blog',
-          autogenerate: { directory: 'posts' },
+          autogenerate: { directory: 'blog' },
         },
       ],
       lastUpdated: true,

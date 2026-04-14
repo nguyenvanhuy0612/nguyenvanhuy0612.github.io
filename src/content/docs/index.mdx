@@ -1,6 +1,6 @@
 ---
 title: Huy's Notes
-description: Tutorials, guides, and notes about AI, development, and more.
+description: AI development notes, tutorials, and guides — local models, APIs, and tools.
 template: splash
 ---
 
@@ -8,46 +8,49 @@ import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
 <div class="home-hero">
   <h1 class="home-hero__title">Huy's Notes</h1>
-  <p class="home-hero__lead">Tutorials, guides, and notes about AI, development tools, and more.</p>
+  <p class="home-hero__lead">AI development notes — running local models, using APIs, and building with LLMs.</p>
 </div>
 
 <div class="home-body">
 
 <div class="home-section">
-  <p class="home-section__label">Get started</p>
-
-  <LinkCard
-    title="How to Install OpenClaw"
-    href="/tutorials/install-openclaw/"
-    description="Step-by-step guide to install and set up OpenClaw, the open-source AI agent that works with WhatsApp, Telegram, Slack, and more."
-  />
-</div>
-
-<div class="home-section">
-  <p class="home-section__label">All topics</p>
-
+  <p class="home-section__label">Topics</p>
   <CardGrid>
     <LinkCard
-      title="Tutorials"
-      href="/tutorials/install-openclaw/"
-      description="Step-by-step walkthroughs for setting up tools and technologies."
+      title="Local AI"
+      href="/local-ai/"
+      description="Run Llama, Mistral, and other models on your own hardware. No cloud, no API costs."
     />
     <LinkCard
-      title="Guides"
-      href="/guides/"
-      description="Reference material and how-to articles."
-    />
-    <LinkCard
-      title="Notes"
-      href="/notes/"
-      description="Quick notes and things worth remembering."
+      title="AI APIs"
+      href="/ai-apis/"
+      description="Integrate Claude, OpenAI, and other AI APIs into your apps and scripts."
     />
     <LinkCard
       title="Blog"
-      href="/posts/welcome/"
-      description="General posts and updates."
+      href="/blog/"
+      description="Updates, discoveries, and thoughts on AI development."
     />
   </CardGrid>
+</div>
+
+<div class="home-section">
+  <p class="home-section__label">Recent</p>
+  <LinkCard
+    title="Ollama vs LM Studio vs vLLM"
+    href="/local-ai/local-models-comparison/"
+    description="Pick the right tool for running AI models locally — comparison with setup instructions."
+  />
+  <LinkCard
+    title="Getting Started with the Claude API"
+    href="/ai-apis/claude-api-getting-started/"
+    description="Set up the Anthropic SDK and make your first API call in Python or Node.js."
+  />
+  <LinkCard
+    title="How to Install Ollama"
+    href="/local-ai/install-ollama/"
+    description="Run LLMs locally with one command — setup guide for macOS, Linux, and Windows."
+  />
 </div>
 
 </div>

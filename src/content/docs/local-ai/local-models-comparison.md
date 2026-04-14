@@ -26,7 +26,7 @@ Running AI models on your own hardware gives you privacy, no API costs, and offl
 
 ## Ollama — Best for Developers
 
-The simplest way to run LLMs from the terminal. See the [full Ollama tutorial](/tutorials/install-ollama/) for detailed setup.
+The simplest way to run LLMs from the terminal. See the [full Ollama tutorial](/local-ai/install-ollama/) for detailed setup.
 
 ```bash
 # Install
