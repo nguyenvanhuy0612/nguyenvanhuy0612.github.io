@@ -14,8 +14,8 @@ const NAV_ITEMS = [
 ] as const;
 
 const LOCALES = [
-  { code: "vi", label: "Tiếng Việt" },
   { code: "en", label: "EN" },
+  { code: "vi", label: "Tiếng Việt" },
   { code: "ja", label: "日本語" },
 ];
 

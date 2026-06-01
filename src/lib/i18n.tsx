@@ -9,12 +9,12 @@ type Messages = typeof en;
 const messagesMap: Record<string, Messages> = { en, vi, ja };
 
 const I18nContext = createContext<{ locale: string; messages: Messages }>({
-  locale: "vi",
-  messages: vi,
+  locale: "en",
+  messages: en,
 });
 
 export function I18nProvider({ locale, children }: { locale: string; children: ReactNode }) {
-  const messages = messagesMap[locale] || vi;
+  const messages = messagesMap[locale] || en;
   return (
     <I18nContext.Provider value={{ locale, messages }}>
       {children}

@@ -37,11 +37,11 @@ jobs:
         run: |
           touch out/.nojekyll
           cat > out/index.html <<'HTML'
-          <!doctype html><html lang="vi"><head><meta charset="utf-8">
-          <meta http-equiv="refresh" content="0; url=/vi/">
-          <link rel="canonical" href="/vi/">
-          <title>Học Claude Code</title></head>
-          <body>Đang chuyển hướng tới <a href="/vi/">/vi/</a>…</body></html>
+          <!doctype html><html lang="en"><head><meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=/en/">
+          <link rel="canonical" href="/en/">
+          <title>Learn Claude Code</title></head>
+          <body>Redirecting to <a href="/en/">/en/</a>…</body></html>
           HTML
 
       - name: Upload artifact

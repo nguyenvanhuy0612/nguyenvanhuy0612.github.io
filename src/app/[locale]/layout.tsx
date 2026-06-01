@@ -6,7 +6,7 @@ import vi from "@/i18n/messages/vi.json";
 import ja from "@/i18n/messages/ja.json";
 import "../globals.css";
 
-const locales = ["vi", "en", "ja"];
+const locales = ["en", "vi", "ja"];
 const metaMessages: Record<string, typeof en> = { en, vi, ja };
 
 export function generateStaticParams() {
@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const messages = metaMessages[locale] || metaMessages.vi;
+  const messages = metaMessages[locale] || metaMessages.en;
   return {
     title: messages.meta?.title || "Learn Claude Code",
     description: messages.meta?.description || "Build an AI coding agent from scratch, one concept at a time",

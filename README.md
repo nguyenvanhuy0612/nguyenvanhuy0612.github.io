@@ -6,8 +6,8 @@ Live site: https://nguyenvanhuy0612.github.io/
 
 ## Languages
 
-- Tiếng Việt (default) — `/vi/`
-- English — `/en/`
+- English (default) — `/en/`
+- Tiếng Việt — `/vi/`
 - 日本語 — `/ja/`
 
 ## Credits & License
