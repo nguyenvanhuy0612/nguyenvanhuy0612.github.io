@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Next.js site to Pages
 
 on:
   push:
@@ -10,14 +10,44 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-      - name: Install, build, and upload
-        uses: withastro/action@v6
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Add redirect + .nojekyll
+        run: |
+          touch out/.nojekyll
+          cat > out/index.html <<'HTML'
+          <!doctype html><html lang="vi"><head><meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=/vi/">
+          <link rel="canonical" href="/vi/">
+          <title>Học Claude Code</title></head>
+          <body>Đang chuyển hướng tới <a href="/vi/">/vi/</a>…</body></html>
+          HTML
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
 
   deploy:
     needs: build
@@ -28,4 +58,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
