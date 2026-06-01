@@ -1,100 +1,40 @@
-# nguyenvanhuy0612.github.io
+# Học Claude Code (Vietnamese)
 
-Personal knowledge base for tutorials, guides, and notes. Built with [Astro](https://astro.build/) + [Starlight](https://starlight.astro.build/) and deployed via [GitHub Pages](https://pages.github.com/).
+A Vietnamese-language fork of **Learn Claude Code** — an interactive course that builds a nano Claude Code–like agent harness from 0 to 1, one mechanism at a time. Built with Next.js (static export) and deployed to GitHub Pages.
 
-**Live site:** [https://nguyenvanhuy0612.github.io](https://nguyenvanhuy0612.github.io)
+Live site: https://nguyenvanhuy0612.github.io/
 
-## Tech Stack
+## Languages
 
-- **[Astro](https://astro.build/)** — fast, lightweight static site generator
-- **[Starlight](https://starlight.astro.build/)** — Astro's official documentation theme
-- **[Pagefind](https://pagefind.app/)** — built-in full-text search
-- **GitHub Actions** — automated build and deploy via `withastro/action`
+- Tiếng Việt (default) — `/vi/`
+- English — `/en/`
+- 日本語 — `/ja/`
 
-## Project Structure
+## Credits & License
 
-```
-.
-├── astro.config.mjs                # Astro + Starlight config (site URL, sidebar, social links)
-├── package.json                    # Dependencies and scripts (dev, build, preview)
-├── tsconfig.json                   # TypeScript config (extends astro/tsconfigs/strict)
-├── .gitignore                      # Ignores node_modules/, dist/, .astro/
-│
-├── .github/
-│   └── workflows/
-│       └── deploy.yml              # GitHub Actions — builds & deploys to Pages
-│
-├── src/
-│   ├── content.config.ts           # Content collection config (docsLoader + docsSchema)
-│   │
-│   └── content/
-│       └── docs/                   # All site content lives here
-│           ├── index.mdx           # Homepage — splash page with card grid
-│           ├── tutorials/          # Step-by-step tutorial articles
-│           │   └── install-openclaw.md
-│           ├── guides/             # Reference guides and how-tos
-│           ├── notes/              # Quick notes and references
-│           └── posts/              # Blog posts
-│               └── welcome.md
-│
-├── CLAUDE.md                       # Guidance for Claude Code AI assistant
-└── README.md                       # This file
-```
+This project is a fork/adaptation of [shareAI-lab/learn-claude-code](https://github.com/shareAI-lab/learn-claude-code)
+(original site: https://learn.shareai.run). The Vietnamese translation was added in this fork; the
+Chinese locale from the original was removed.
 
-## Content Sections
+The original work is licensed under the MIT License, (c) shareAI Lab. This fork retains that license
+(see LICENSE) and credits the original authors. Translated content is a derivative work distributed
+under the same MIT terms.
 
-| Section | Directory | URL |
-|---------|-----------|-----|
-| Tutorials | `src/content/docs/tutorials/` | `/tutorials/slug/` |
-| Guides | `src/content/docs/guides/` | `/guides/slug/` |
-| Notes | `src/content/docs/notes/` | `/notes/slug/` |
-| Blog | `src/content/docs/posts/` | `/posts/slug/` |
+## Local development
 
-## Adding New Content
-
-Create a Markdown file in the appropriate `src/content/docs/` subdirectory:
-
-```yaml
----
-title: "Your title here"
-description: "A short description"
----
-
-Your content in Markdown...
-```
-
-New pages automatically appear in the sidebar (configured via `autogenerate` in `astro.config.mjs`).
-
-## Local Development
-
-```bash
-# Install dependencies (first time only)
+\`\`\`bash
 npm install
-
-# Start local dev server at http://localhost:4321
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
-```
-
-## Features (from Starlight)
-
-- **Dark/light mode** — toggle in the header, persisted across visits
-- **Full-text search** — powered by Pagefind, built automatically
-- **Sidebar navigation** — auto-generated from directory structure
-- **Table of contents** — generated from headings on each page
-- **Code blocks** — syntax highlighting with copy button
-- **Edit links** — "Edit page" link pointing to GitHub source
-- **Last updated** — shows when each page was last modified
-- **Responsive** — mobile-friendly with collapsible sidebar
-- **SEO** — sitemap and meta tags generated automatically
+npm run dev      # http://localhost:3000
+npm run build    # static export to ./out
+\`\`\`
 
 ## Deployment
 
-Push to the `main` branch. GitHub Actions (`.github/workflows/deploy.yml`) builds and deploys automatically.
+Pushing to \`main\` triggers \`.github/workflows/deploy.yml\`, which builds the static export and publishes
+it to GitHub Pages. In repo settings, set Pages -> Build and deployment -> Source to "GitHub Actions".
 
-**Important:** In your GitHub repo settings, set Pages source to **GitHub Actions** (Settings > Pages > Source > GitHub Actions).
+## Content structure
+
+- Lesson prose: \`src/data/generated/docs.json\` (per-locale: vi, en, ja).
+- Code, diffs, version metadata: \`src/data/generated/versions.json\`.
+- UI strings: \`src/i18n/messages/{vi,en,ja}.json\`.
